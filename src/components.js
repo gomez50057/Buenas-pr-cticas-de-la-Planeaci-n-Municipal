@@ -1,5 +1,4 @@
 import React, { useState, useEffect, forwardRef, useMemo } from "react";
-import { datosBibliotecaDigital } from './utils';
 
 const imgBasePath = "img/";
 const imgFront_pagePath = "img/caratulas/";
@@ -15,24 +14,23 @@ export const BackgroundHome = ({ children }) => {
 
   return (
     <section className="home">
-      <video autoPlay loop muted playsInline className="background-video">
+      {/* <video autoPlay loop muted playsInline className="background-video">
         <source src={`${imgBasePath}homeDigital.mp4`} type="video/mp4" />
-      </video>
+      </video> */}
+
       <div className="logotipo">
-        <img src={`${imgBasePath}Logotipo.webp`} alt="Logo de la Unidad Planeación" />
+        <img src={`${imgBasePath}Logotipo.png`} alt="Logo de la Unidad Planeación" />
       </div>
+
+      <div className="ciudad">
+        <img src={`${imgBasePath}ciudad.png`} alt="Logo de Biblioteca Digital de Planeación" />
+      </div>
+
       <div className="homeText">
-        <img src={`${imgBasePath}homeText.webp`} alt="Logo de Biblioteca Digital de Planeación" />
-      </div>
-      <div className="containerHome_h">
-        <div className="homeBar"></div>
-        <div>
-          <h3 className="homeh2">"El conocimiento nos guía en la búsqueda de respuestas y soluciones para el bien común."</h3>
-          <h3 className="homeh3">- Julio Menchaca Salazar</h3>
+        <h2>Reconocimiento<span> a las Buenas Prácticas</span> de <span>Planeación Municipal</span></h2>
+        <div className="container_home-button" onClick={handleButtonClick}>
+          <button aria-label="Botón de desplazamiento hacia abajo" className="home-button scroll-down" onClick={handleButtonClick}>Proyectos Reconocidos</button>
         </div>
-      </div>
-      <div className="container_home-button " onClick={handleButtonClick}>
-        <button aria-label="Botón de desplazamiento hacia abajo" className="home-button scroll-down" onClick={handleButtonClick}></button>
       </div>
 
       {forwardRef.current && <AboutUs ref={forwardRef} />}
@@ -66,8 +64,8 @@ export const AboutUs = forwardRef(({ children }, ref) => {
 
   return (
     <section id="aboutUs" ref={ref} className="AboutUs">
-      <div className="AboutUsIMG">
-        <img src="img/logo.png" alt="Persona leyendo nube de palabras" loading="lazy" />
+      <div className="AboutUsIMG wow animate__animated animate__backInUp">
+        <img src="img/aboutUs.png" alt="Persona leyendo nube de palabras" loading="lazy" />
       </div>
       <div className="AboutUstxt">
         <h3 className="wow animate__animated animate__fadeInRight">¡Descubre y difunde las mejores prácticas en Planeación Municipal!</h3>
@@ -78,7 +76,14 @@ export const AboutUs = forwardRef(({ children }, ref) => {
   );
 });
 
-
+// seccionBar component.
+export function SeccionBar() {
+  return (
+    <div className="seccion-bar">
+      <img src="img/fondoSecc.jpg" alt="Persona leyendo nube de palabras" loading="lazy" />
+    </div>
+  );
+}
 
 // Demo component.
 export const Demo = ({ children }) => (
@@ -86,7 +91,7 @@ export const Demo = ({ children }) => (
     {/* <div className="ImgBanda" >
       <img src={`${imgBasePath}banda.webp`} alt="Banda con glifos de Hidalgo" />
     </div> */}
-    
+
     {children}
   </section>
 );
@@ -101,7 +106,7 @@ export const Documents = ({ children }) => (
   </div>
 );
 
-// Documents 
+// Button component.
 export const CenteredButton = ({ link, text }) => {
   const handleClick = () => {
     window.open(link, "_blank");
@@ -167,7 +172,7 @@ const Modal = ({ children, isOpen, onClose, booksData }) => {
   if (!isOpen) {
     return null;
   }
-  const { municipio, name, año, description, pdfSrc } = booksData;
+  const { municipio, name, año, description, ftSrc, peSrc } = booksData;
 
   return (
     <div className={`modal-overlay ${isOpen ? 'modal-open' : 'modal-closed'}`} onClick={onClose}>
@@ -175,19 +180,19 @@ const Modal = ({ children, isOpen, onClose, booksData }) => {
         {/* <img src={imgSrc} alt={`Imagen de ${name}`} /> */}
         <h2>{name}</h2>
         <p>{description}</p>
-        <p>Año de Reconocimiento : {año}</p>
+        <p>Año de Convocatoria: {año}</p>
         <p>Municipio: {municipio.join(', ')}</p>
         <div className="containerDownload">
-          <a href={pdfSrc} download target="_blank" className="cta">
-            <span>Descargar Ficha técnica
+          <a href={ftSrc} download target="_blank" className="cta">
+            <span>Ficha técnica
             </span>
             <svg width="13px" height="10px" viewBox="0 0 13 10">
               <path d="M1,5 L11,5"></path>
               <polyline points="8 1 12 5 8 9"></polyline>
             </svg>
           </a>
-          <a href={pdfSrc} download target="_blank" className="cta">
-            <span>Descargar Presentación ejecutiva</span>
+          <a href={peSrc} download target="_blank" className="cta">
+            <span>Presentación ejecutiva</span>
             <svg width="13px" height="10px" viewBox="0 0 13 10">
               <path d="M1,5 L11,5"></path>
               <polyline points="8 1 12 5 8 9"></polyline>
@@ -209,53 +214,27 @@ const Modal = ({ children, isOpen, onClose, booksData }) => {
 
 // Card content.
 export const CardContent = React.memo(
-  ({ municipio, name, año, description, pdfSrc }) => {
+  ({ municipio, name, año, description, ftSrc, peSrc }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const truncatedName = name.length > 55 ? `${name.slice(0, 55)}...` : name;
+    const truncatedName = name.length > 37 ? `${name.slice(0, 37)}...` : name;
 
     const booksData = {
-      municipio,
-      name,
-      año,
-      description,
-      pdfSrc,
+      municipio, name, año, description, ftSrc, peSrc
     };
 
     return (
       <>
         <div className="book-card-container" onClick={() => setIsModalOpen(true)}>
-          <div className="book-card" data-pokemon-type={municipio[0]}>
-
-            <div className="book-card__image">
-              <img src={`${imgFront_pagePath}${municipio[0]}.webp`} alt={`Imagen de ${name}`} />
-            </div>
-            <Tooltip text={name}><h3 className="book-card__name">
-              <span>{truncatedName}</span>
-              <svg className="right">
-                <use xlinkHref="#icon-rounded-tri-right">
-                  <svg id="icon-rounded-tri-right" viewBox="0 0 32 32">
-                    <title>rounded-tri-right</title>
-                    <path
-                      className="path1"
-                      d="M3.424 1.76l20.864 28.48c0.8 1.088 2.080 1.728 3.424 1.728h-27.712v-31.936c1.344 0 2.624 0.64 3.424 1.728z"
-                    />
-                  </svg>
-                </use>
-              </svg>
-              <svg className="left">
-                <use xlinkHref="#icon-rounded-tri-left">
-                  {" "}
-                  <svg id="icon-rounded-tri-left" viewBox="0 0 32 32">
-                    <title>rounded-tri-left</title>
-                    <path
-                      className="path1"
-                      d="M28.576 1.728l-20.896 28.48c-0.8 1.088-2.080 1.728-3.424 1.728h27.744v-31.936c-1.344 0-2.624 0.64-3.424 1.728z"
-                    />
-                  </svg>
-                </use>
-              </svg>
-            </h3></Tooltip>
+          <div className="book-card">
+            <Tooltip text={name}>
+              <div className="book-card__image">
+                <img src={`${imgFront_pagePath}${municipio[0]}.jpg`} alt={`Imagen de ${name}`} />
+              </div>
+              <h3 className="book-card__name">
+                <span>{truncatedName}</span>
+              </h3>
+            </Tooltip>
 
             <span className="book-card__year">
               <span>{año}</span>
@@ -284,6 +263,8 @@ export const CardContent = React.memo(
                   </svg>
                 </use>
               </svg>
+
+
             </span>
 
           </div>
@@ -305,6 +286,7 @@ export const Switch = React.forwardRef(({ children }, ref) => (
   </div>
 ));
 
+
 // Foouter component.
 export const Foouter = ({ children }) => (
   <section className="foouter"
@@ -314,7 +296,7 @@ export const Foouter = ({ children }) => (
     </div>
     <div className="fooutertxt">
       <div className="foouterBar"></div>
-      <h1>Biblioteca Digital de Planeación</h1>
+      <h1>Reconocimiento a las Buenas<span>Prácticas de Planeación Municipal</span></h1>
       <div className="foouterInfo">
         <h2>Unidad de Planeación y Prospectiva</h2>
         <div className="foouterUbicacion">

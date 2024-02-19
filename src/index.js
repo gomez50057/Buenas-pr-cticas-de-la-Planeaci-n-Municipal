@@ -5,7 +5,7 @@ import { createRoot } from 'react-dom/client';
 /* Muuri-react */
 import { MuuriComponent, AutoScroller, useData } from "muuri-react";
 /* Utils & components */
-import { Demo, Documents, BackgroundHome, AboutUs, CenteredButton , Select, Input, Switch, CardContent, Foouter } from "./components";
+import { Demo, Documents, BackgroundHome, AboutUs, SeccionBar,  CenteredButton , Select, Input, Switch, CardContent, Foouter } from "./components";
 import { datosBibliotecaDigital, useFilter } from "./utils";
 /* Style */
 import "./style.css";
@@ -66,7 +66,8 @@ const App = () => {
           description={bookCard.description}
           municipio={bookCard.municipio}
           año={bookCard.año}
-          pdfSrc={bookCard.pdfSrc}
+          ftSrc={bookCard.ftSrc}
+          peSrc={bookCard.peSrc}
           projectsIndex={bookCard.projectsIndex}
         />
       )),
@@ -81,6 +82,7 @@ const App = () => {
     <div>
       <BackgroundHome></BackgroundHome>
       <AboutUs></AboutUs>
+      <SeccionBar></SeccionBar>
       <Demo>
         {/* Documents */}
         <Documents>
@@ -134,7 +136,7 @@ const App = () => {
 
       </Demo>
 
-      <CenteredButton link="https://www.ejemplo.com" text="REVISA LAS BASES DE LA CONVOCATORIA"></CenteredButton>
+      <CenteredButton link="http://tenemosunacuerdo.hidalgo.gob.mx/pdf/15SEP23_CONVOCATORIA.pdf" text="REVISA LAS BASES DE LA CONVOCATORIA"></CenteredButton>
 
       <Foouter></Foouter>
     </div>

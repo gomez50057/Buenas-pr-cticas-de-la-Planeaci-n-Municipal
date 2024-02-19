@@ -1,15 +1,9 @@
-/* React */
 import React, { useState, useMemo, useRef } from "react";
 import { createRoot } from 'react-dom/client';
-
-/* Muuri-react */
 import { MuuriComponent, AutoScroller, useData } from "muuri-react";
-/* Utils & components */
-import { Demo, Documents, BackgroundHome, AboutUs, SeccionBar,  CenteredButton , Select, Input, Switch, CardContent, Foouter } from "./components";
+import { Demo, Documents, BackgroundHome, AboutUs, SeccionBar, CenteredButton, Select, Input, Switch, CardContent, Foouter } from "./components";
 import { datosBibliotecaDigital, useFilter } from "./utils";
-/* Style */
 import "./style.css";
-/* animate */
 import WOW from 'wow.js';
 import 'animate.css/animate.min.css';
 
@@ -19,46 +13,32 @@ wow.init();
 const rootElement = document.getElementById('app');
 const root = createRoot(rootElement);
 
-// App.
 const App = () => {
-  // Estado del filtro.
-  const [filter, setFilter] = useState({
-    name: "",
-    type: ""
-  });
+  // Estado para el filtro de búsqueda
+  const [filter, setFilter] = useState({ name: "", type: "" });
+  // Estado para la clasificación
+  const [sort, setSort] = useState({ value: "type", options: { descending: true }, });
+  // Función de filtrado
+  const filterFunction = useFilter(filter.name, filter.type);
 
-
-  // Añadir un nuevo estado para la clasificación
-  const [sort, setSort] = useState({
-    value: "type",
-    options: { descending: true },
-  });
-
-
-
-  // Método de filtrado.
-  const filterFunction = useFilter(filter.name, filter.type, );
-
-  // Función para manejar el cambio en la categoría
+  // Manejador de cambio de categoría
   const handleCategoryChange = (e) => {
     const category = e.target.value;
     setFilter({ ...filter, type: category });
-    // Restablecer la subcategoría cuando se cambia la categoría
   };
 
-
-
-
-
-  // Restablecer la subcategoría cuando se cambia el filtro de nombre
+  // Manejador de cambio de filtro por nombre
   const handleNameFilterChange = (e) => {
     setFilter({ ...filter, name: e.target.value });
   };
 
-  
-  // Memorice a los children para mejorar su rendimiento.
-  const children = useMemo(
-    () =>
+  // Manejador de cambio de clasificación
+  const handleSortChange = (newSort) => {
+    setSort({ value: newSort, options: { descending: true } });
+  };
+
+  // Renderizado de los hijos
+  const children = useMemo(() =>
       datosBibliotecaDigital.cards.map(bookCard => (
         <BookCard
           key={bookCard.projectsIndex}
@@ -74,45 +54,34 @@ const App = () => {
     []
   );
 
-  // Scroll container ref.
+  // Referencia para el contenedor de desplazamiento
   const scrollElemRef = useRef();
 
-  // Render.
   return (
     <div>
-      <BackgroundHome></BackgroundHome>
-      <AboutUs></AboutUs>
-      <SeccionBar></SeccionBar>
+      <BackgroundHome />
+      <AboutUs />
+      <SeccionBar />
       <Demo>
-        {/* Documents */}
         <Documents>
-          {/* Name input */}
-          {/* <Input onKeyUp={e => setFilter({ ...filter, name: e.target.value })} /> */}
+          {/* Entrada de texto para filtrar por nombre */}
           <Input onKeyUp={handleNameFilterChange} />
-          {/* Categoría */}
+          {/* Selección de categoría */}
           <Select
             values={datosBibliotecaDigital.category_mun}
             onChange={handleCategoryChange}
             icon="&#xE164;"
           />
-          {/* A-Z, Año */}
+          {/* Selección de clasificación */}
           <Select
-            values={["Ordenar Por", ...datosBibliotecaDigital.cardInfo]}
-            onChange={(e) => {
-              const newClassification = e.target.value;
-              if (newClassification !== "default") {
-                handleClassificationChange(newClassification);
-              }
-            }}
-            icon="&#xe8d5;" 
+            values={["Ordenar Por", "A-Z", "Año"]}
+            onChange={(e) => handleSortChange(e.target.value)}
+            icon="&#xe8d5;"
           />
         </Documents>
-        
-        {/* Switch */}
         <Switch ref={scrollElemRef}>
+          {/* Componente Muuri para la disposición de elementos */}
           <MuuriComponent
-
-            // dragEnabled
             dragFixed
             sort={sort.value}
             sortOptions={sort.options}
@@ -129,28 +98,27 @@ const App = () => {
               ]
             }}
           >
+            {/* Renderizado de los hijos */}
             {children}
           </MuuriComponent>
         </Switch>
-
-
       </Demo>
-
-      <CenteredButton link="http://tenemosunacuerdo.hidalgo.gob.mx/pdf/15SEP23_CONVOCATORIA.pdf" text="REVISA LAS BASES DE LA CONVOCATORIA"></CenteredButton>
-
-      <Foouter></Foouter>
+      {/* Botón centrado */}
+      <CenteredButton link="http://tenemosunacuerdo.hidalgo.gob.mx/pdf/15SEP23_CONVOCATORIA.pdf" text="CONSULTA LAS BASES DE LA CONVOCATORIA 2023" />
+      {/* Pie de página */}
+      <Foouter />
     </div>
   );
 };
 
+// Componente para cada tarjeta de libro
 const BookCard = props => {
   const { municipio, año, name } = props;
-  // Combina los tipos en un solo string (si hay dos tipos)
   const type = `${municipio[0]} ${municipio[1] || ""}`;
-  // Estos datos se utilizarán para ordenar y filtrar.
+  // Uso de datos para filtrar y ordenar
   useData({ name, type, año });
-  // Renderiza el componente `CardContent` y pasa todas las propiedades a este componente hijo
   return <CardContent {...props} />;
 };
 
+// Renderizado de la aplicación en el elemento raíz
 root.render(<App />);

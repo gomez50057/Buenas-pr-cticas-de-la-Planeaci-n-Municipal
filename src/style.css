@@ -17,6 +17,7 @@ a {
   text-decoration: none;
 }
 
+
 .subtitulo {
   font-size: 30px;
   letter-spacing: 0.40em;
@@ -179,11 +180,13 @@ a {
   cursor: pointer;
   outline: none;
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
-  transition: box-shadow 0.3s ease;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
 }
 
-
-
+.container_home-button .home-button:hover {
+  transform: perspective(9000px) rotateX(15deg) translateY(-3px);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.7);
+}
 
 
 /*  */
@@ -264,18 +267,14 @@ a {
 
 .seccion-bar {
   width: 100vw;
-  height: 150px;
+  height: auto;
   background-size: cover;
-  /* Ajusta el tamaño de la imagen para cubrir todo el elemento */
   background-repeat: no-repeat;
-  /* Evita la repetición de la imagen */
-  background-color: #98989A;
 }
 
-.seccion-bar p {
-  font-size: 10rem;
-  position: absolute;
-  top: 0;
+.seccion-bar img {
+  width: 100%;
+  height: auto;
 }
 
 /*  */
@@ -469,46 +468,54 @@ select.form-control::-ms-expand {
 
 
 .muuri {
-  position: relative; 
+  position: relative;
 }
 
 .book-card-container {
-  width: 300px;
+  width: calc(100%/3);
   height: 420px;
-  margin: 20px;
+  margin: 25px 0;
   z-index: 1;
 }
 
 .book-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
   width: 100%;
   height: 100%;
   cursor: pointer;
-  background: #98989A;
   border-radius: 1.15625em;
-  transition: box-shadow 0.2s;
+  /* transition: box-shadow 0.2s; */
 }
 
-.book-card:hover {
+/* .book-card:hover {
   z-index: 5;
   box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.3), 0 0 0 4px hsla(0, 0%, 100%, 0.795),
     0 0 30px 5px rgba(0, 0, 0, 0.5);
-}
+} */
 
 .book-card__image img {
-  display: block;
   width: 100%;
   height: 100%;
   border-radius: 1.15625em;
+  transition: box-shadow 0.2s;
+
+}
+
+.book-card__image img:hover {
+  z-index: 5;
+  box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.3), 0 0 0 4px hsla(0, 0%, 100%, 0.795),
+    0 0 30px 5px rgba(0, 0, 0, 0.5);
 }
 
 .book-card__name {
   position: absolute;
   width: 300px;
   height: 50px;
-  bottom: -5px;
-  padding-left: 10px;
-  padding-right: 10px;
+  bottom: -17px;
+  padding: 0 10px;
   left: 0;
   right: 0;
   font-family: "Montserrat", sans-serif;
@@ -825,8 +832,12 @@ select.form-control::-ms-expand {
 
 @media screen and (max-width: 600px) {
 
-  .book-card__name span {
-    font-size: 1em;
+  .book-card__name {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    bottom: 2px;
+    font-size: 8px;
   }
 
   .book-card-container {
@@ -902,11 +913,22 @@ select.form-control::-ms-expand {
     top: 2vh;
   }
 
+  .containerSubTiDoc {
+    margin-bottom: calc(2vh + 20px);
+  }
+
   .control {
     float: none;
     width: auto;
     margin: 0 0 15px 0;
   }
+
+  /* Boton convocatoria */
+
+  .centered-button {
+    width: 90vw;
+  }
+
 }
 
 @media screen and (max-width: 550px) {
@@ -1019,12 +1041,12 @@ select.form-control::-ms-expand {
 }
 
 @media screen and (min-width: 1440px) {
-  .book-card-container {
+  /* .book-card-container {
     width: 300px;
     height: 380px;
     margin: 10px;
     z-index: 1;
-  }
+  } */
 
   .foouter .foouterLogo img {
     width: 550px;
@@ -1039,12 +1061,4 @@ select.form-control::-ms-expand {
 
 .AboutUstxt .animate__animated.animate__fadeInRight:nth-child(1) {
   --animate-duration: 1.2s;
-}
-
-.AboutUstxt .animate__animated.animate__fadeInRight:nth-child(2) {
-  --animate-duration: 1.35s;
-}
-
-.AboutUstxt .animate__animated.animate__fadeInRight:nth-child(3) {
-  --animate-duration: 1.45s;
 }

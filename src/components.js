@@ -1,23 +1,18 @@
-import React, { useState, useEffect, forwardRef, useMemo } from "react";
+import React, { useState } from "react";
 
 const imgBasePath = "img/";
 const imgFront_pagePath = "img/caratulas/";
 
 // Home component.
-export const BackgroundHome = ({ children }) => {
+export const BackgroundHome = () => {
   const handleButtonClick = () => {
-    const aboutUsElement = document.getElementById('aboutUs');
-    if (aboutUsElement) {
-      aboutUsElement.scrollIntoView({ behavior: 'smooth' });
+    const demoElement = document.querySelector('.grid-demo');
+    if (demoElement) {
+      demoElement.scrollIntoView({ behavior: 'smooth' });
     }
   };
-
   return (
     <section className="home">
-      {/* <video autoPlay loop muted playsInline className="background-video">
-        <source src={`${imgBasePath}homeDigital.mp4`} type="video/mp4" />
-      </video> */}
-
       <div className="logotipo">
         <img src={`${imgBasePath}Logotipo.png`} alt="Logo de la Unidad Planeación" />
       </div>
@@ -32,38 +27,14 @@ export const BackgroundHome = ({ children }) => {
           <button aria-label="Botón de desplazamiento hacia abajo" className="home-button scroll-down" onClick={handleButtonClick}>Proyectos Reconocidos</button>
         </div>
       </div>
-
-      {forwardRef.current && <AboutUs ref={forwardRef} />}
-      {children}
     </section>
   );
 };
 
 // aboutUs component.
-export const AboutUs = forwardRef(({ children }, ref) => {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const element = document.querySelector('.AboutUs');
-      if (element) {
-        const { top, bottom } = element.getBoundingClientRect();
-        const triggerTop = window.innerHeight * 0.5; // Activar cuando el 50% del componente sea visible
-        const triggerBottom = window.innerHeight * 0.3; // Desactivar cuando el 70% del componente esté fuera de vista
-        setIsVisible(top < triggerTop && bottom > triggerBottom);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    // Limpieza del evento al desmontar el componente
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
+export const AboutUs = () => {
   return (
-    <section id="aboutUs" ref={ref} className="AboutUs">
+    <section className="AboutUs">
       <div className="AboutUsIMG wow animate__animated animate__backInUp">
         <img src="img/aboutUs.png" alt="Persona leyendo nube de palabras" loading="lazy" />
       </div>
@@ -71,10 +42,13 @@ export const AboutUs = forwardRef(({ children }, ref) => {
         <h3 className="wow animate__animated animate__fadeInRight">¡Descubre y difunde las mejores prácticas en Planeación Municipal!</h3>
         <p className="wow animate__animated animate__fadeInRight">¡Revive los logros que han transformado nuestro estado! Explora las experiencias que han impulsado el desarrollo en los municipios de Hidalgo.<span> ¿Qué son las buenas prácticas de Planeación Municipal?</span>  Son acciones que han llevado a cabo nuestras administraciones públicas locales, enfocadas en la Planeación Democrática, Desarrollo Regional y Metropolitano, Planeación del Territorio, Objetivos del Desarrollo Sostenible y Evaluación. ¡Descubre cómo se plantean estas prácticas para mejorar nuestra calidad de vida!</p>
       </div>
-      {children}
     </section>
   );
-});
+};
+
+
+
+
 
 // seccionBar component.
 export function SeccionBar() {
@@ -88,14 +62,9 @@ export function SeccionBar() {
 // Demo component.
 export const Demo = ({ children }) => (
   <section className="grid-demo">
-    {/* <div className="ImgBanda" >
-      <img src={`${imgBasePath}banda.webp`} alt="Banda con glifos de Hidalgo" />
-    </div> */}
-
     {children}
   </section>
 );
-
 // Documents component.
 export const Documents = ({ children }) => (
   <div className="documents">
@@ -216,9 +185,7 @@ const Modal = ({ children, isOpen, onClose, booksData }) => {
 export const CardContent = React.memo(
   ({ municipio, name, año, description, ftSrc, peSrc }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-
     const truncatedName = name.length > 37 ? `${name.slice(0, 37)}...` : name;
-
     const booksData = {
       municipio, name, año, description, ftSrc, peSrc
     };

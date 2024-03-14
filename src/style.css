@@ -132,7 +132,6 @@ a {
 .AboutUs {
   background-size: cover;
   background-position: center;
-  /* background-attachment: fixed; */
   width: 100vw;
   height: 100vh;
 }
@@ -525,6 +524,22 @@ select.form-control::-ms-expand {
   color: #BC955B;
 }
 
+.book-card__municipio {
+  position: absolute;
+  text-align: center;
+  width: 300px;
+  height: 50px;
+  bottom: 10px;
+  padding: 0 10px;
+  left: 0;
+  right: 0;
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 1;
+  color: #DDC9A3;
+}
 
 
 
@@ -704,7 +719,7 @@ select.form-control::-ms-expand {
 .close-button {
   position: absolute;
   top: 10px;
-  right: 10px;
+  right: 20px;
   cursor: pointer;
 }
 
@@ -750,7 +765,7 @@ select.form-control::-ms-expand {
     stroke-linejoin: round;
     stroke: #111;
     stroke-width: 2;
-    transform: translateX(-5px);
+    transform: translateX(10px);
     transition: transform 0.3s ease;
   }
 
@@ -831,6 +846,15 @@ select.form-control::-ms-expand {
 /*  */
 
 @media screen and (max-width: 600px) {
+
+  .homeText {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    height: 35vh;
+    justify-content: center;
+  }
 
   .book-card__name {
     position: absolute;
@@ -1038,6 +1062,20 @@ select.form-control::-ms-expand {
     width: 110px;
     height: 210px;
   }
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+    background-color: #F5F3F5;
+    width: 100vw;
+    height: 20vh;
+    font-size: 19px;
+  }
+
+  .homeText {
+    margin-top: 100px;
+  }
+
 }
 
 @media screen and (min-width: 1440px) {

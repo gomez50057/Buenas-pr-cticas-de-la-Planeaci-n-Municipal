@@ -22,7 +22,7 @@ export const BackgroundHome = () => {
       </div>
 
       <div className="homeText">
-        <h2>Reconocimiento<span> a las Buenas Prácticas</span> de <span>Planeación Municipal</span></h2>
+        <h2>Banco de Buenas Prácticas de<span> </span>  <span>Planeación Municipal</span></h2>
         <div className="container_home-button" onClick={handleButtonClick}>
           <button aria-label="Botón de desplazamiento hacia abajo" className="home-button scroll-down" onClick={handleButtonClick}>Proyectos Reconocidos</button>
         </div>
@@ -40,7 +40,7 @@ export const AboutUs = () => {
       </div>
       <div className="AboutUstxt">
         <h3 className="wow animate__animated animate__fadeInRight">¡Descubre y difunde las mejores prácticas en Planeación Municipal!</h3>
-        <p className="wow animate__animated animate__fadeInRight">¡Revive los logros que han transformado nuestro estado! Explora las experiencias que han impulsado el desarrollo en los municipios de Hidalgo.<span> ¿Qué son las buenas prácticas de Planeación Municipal?</span>  Son acciones que han llevado a cabo nuestras administraciones públicas locales, enfocadas en la Planeación Democrática, Desarrollo Regional y Metropolitano, Planeación del Territorio, Objetivos del Desarrollo Sostenible y Evaluación. ¡Descubre cómo se plantean estas prácticas para mejorar nuestra calidad de vida!</p>
+        <p className="wow animate__animated animate__fadeInRight">¡Revive los logros que han transformado nuestro estado! Explora las experiencias que han impulsado el desarrollo en los municipios de Hidalgo.<span> ¿Qué son las buenas prácticas de Planeación Municipal?</span> Son acciones que han llevado a cabo nuestras administraciones públicas locales, enfocadas en la Planeación Democrática, Desarrollo Regional y Metropolitano, Planeación del Territorio, Objetivos del Desarrollo Sostenible y Evaluación. ¡Descubre cómo se plantean estas prácticas!</p>
       </div>
     </section>
   );
@@ -198,24 +198,17 @@ export const CardContent = React.memo(
               <div className="book-card__image">
                 <img src={`${imgFront_pagePath}${municipio[0]}.jpg`} alt={`Imagen de ${name}`} />
               </div>
-              <h3 className="book-card__name">
-                <span>{truncatedName}</span>
-              </h3>
+              <h3 className="book-card__name"><span>{truncatedName}</span></h3>
+              <h3 className="book-card__municipio">{municipio}</h3>
             </Tooltip>
 
             <span className="book-card__year">
               <span>{año}</span>
               <svg className="right">
                 <use xlinkHref="#icon-rounded-slim-tri-bottom-right">
-                  <svg
-                    id="icon-rounded-slim-tri-bottom-right"
-                    viewBox="0 0 32 32"
-                  >
+                  <svg id="icon-rounded-slim-tri-bottom-right" viewBox="0 0 32 32">
                     <title>rounded-slim-tri-bottom-right</title>
-                    <path
-                      className="path1"
-                      d="M13.472 2.944l-9.312 26.016c-0.64 1.824-2.368 3.040-4.32 3.040v-32.096h17.92c-1.92 0-3.648 1.216-4.288 3.040z"
-                    />
+                    <path className="path1" d="M13.472 2.944l-9.312 26.016c-0.64 1.824-2.368 3.040-4.32 3.040v-32.096h17.92c-1.92 0-3.648 1.216-4.288 3.040z"/>
                   </svg>
                 </use>
               </svg>

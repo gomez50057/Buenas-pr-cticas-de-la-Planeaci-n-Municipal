@@ -41,7 +41,7 @@ export const datosBibliotecaDigital = {
     {
       "name": "Plataformas de Participación Ciudadana para la Construcción y Actualización del PMD 2020-2023",
       "municipio": ["pachuca de soto"],
-      "description": "Creación y desarrollo de una plataforma alineada a los Planes Nacional y Estatal de Desarrollo derivado de un análisis profundo de las problemáticas relacionadas con la\nparticipación ciudadana, con la finalidad de recaudar las propuestas por parte de la ciudadanía y poder consultar y visualizar la informaciónde una manera mas dinámica.",
+      "description": "El proyecto consiste en una plataforma alineada a los Planes Nacional y Estatal de Desarrollo derivado de un análisis profundo de las problemáticas relacionadas con la participación ciudadana, con la finalidad de recaudar las propuestas por parte de la ciudadanía y poder consultar y visualizar la información de una manera más dinámica.",
       "año": "2023",
       "ftSrc": "https://drive.google.com/file/d/1n76uMhyQSX5ZSkN43UT4gG5-7iICuWLV/view?usp=sharing",
       "peSrc": "https://drive.google.com/file/d/1f8j33GabW9HPgdVKJIz3blY7Qs_MvIgv/view?usp=drive_link",
@@ -50,7 +50,7 @@ export const datosBibliotecaDigital = {
     {
       "name": "Matriz de Indicadores Resultados 3T",
       "municipio": ["villa de tezontepec"],
-      "description": "Creación de una Matriz de Indicadores de Resultados (MIR) de mejora continua, con el objetivo de crear programas presupuestales eficientes, optimizar el presupuesto y satisfacer las necesidades reales y actuales de la Ciudadanía.",
+      "description": "El proyecto consiste en una Matriz de Indicadores de Resultados (MIR) de mejora continua, con el objetivo de crear programas presupuestales eficientes, optimizar el presupuesto y satisfacer las necesidades reales y actuales de la Ciudadanía.",
       "año": "2023",
       "ftSrc": "https://drive.google.com/file/d/1BazpOVCmj5CYxB8UeJRqxtlQjYWJqurD/view?usp=sharing",
       "peSrc": "https://drive.google.com/file/d/17vRAM85J5Zb7cAztneEhW6tqPTF34cUs/view?usp=sharing",
@@ -59,7 +59,7 @@ export const datosBibliotecaDigital = {
     {
       "name": "Observatorio de Políticas Públicas",
       "municipio": ["alfajayucan"],
-      "description": "El proyecto consiste en un módulo de Observatorio de Políticas Públicas  que brinda información estratégica sobre el avance en la atención de problemas públicos con temáticas alineadas al Plan Municipal de Desarrollo y con dos componentes Diagnóstico y Acciones y Resultados, con el objetivo de mejorar la transparencia y rendición de cuentas del ejercicio del gasto público.",
+      "description": "El proyecto consiste en un módulo de Observatorio de Políticas Públicas que brinda información estratégica sobre el avance en la atención de problemas públicos con temáticas alineadas al Plan Municipal de Desarrollo y con dos componentes Diagnóstico y Acciones y Resultados, con el objetivo de mejorar la transparencia y rendición de cuentas del ejercicio del gasto público.",
       "año": "2023",
       "ftSrc": "https://drive.google.com/file/d/1-ZjpyZUnZfVSVAD7Ayi1ut2eEv0wiwJn/view?usp=sharing",
       "peSrc": "https://drive.google.com/file/d/1acVD8pHTXgPp2MBBs2L06rktDcKllYv-/view?usp=sharing",
